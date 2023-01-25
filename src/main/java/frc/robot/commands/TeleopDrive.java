@@ -57,12 +57,14 @@ private Double limitvalue;
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_drivetrain.updateOdometry();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        limitvalue=(-m_Limiter.getAsDouble()/2)+0.5;
+        m_drivetrain.updateOdometry();
+        limitvalue=1.0; //(-m_Limiter.getAsDouble()/2)+0.5;
         m_drivetrain.Drive(limitvalue*m_steering.getAsDouble(), limitvalue*m_throttle.getAsDouble());
         SmartDashboard.putNumber("limiter value", m_Limiter.getAsDouble());
     }
