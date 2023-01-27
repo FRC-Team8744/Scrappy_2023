@@ -64,7 +64,7 @@ private Double limitvalue;
     @Override
     public void execute() {
         m_drivetrain.updateOdometry();
-        limitvalue=1.0; //(-m_Limiter.getAsDouble()/2)+0.5;
+        limitvalue=(-m_Limiter.getAsDouble()/2)+0.5;
         m_drivetrain.Drive(limitvalue*m_steering.getAsDouble(), limitvalue*m_throttle.getAsDouble());
         SmartDashboard.putNumber("limiter value", m_Limiter.getAsDouble());
     }
