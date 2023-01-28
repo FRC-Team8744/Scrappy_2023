@@ -79,6 +79,16 @@ public class LEDLights extends SubsystemBase {
     m_rainbowFirstPixelHue += 3;
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
+
+    
+  }
+
+  public void setcolor(int r, int g, int b) {
+    LED_r=r;
+    LED_g=g;
+    LED_b=b;
+    
+
     
   }
 
