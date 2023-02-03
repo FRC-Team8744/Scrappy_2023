@@ -21,7 +21,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.Timer; import edu.wpi.first.wpilibj.DriverStation; import com.kauailabs.navx.frc.AHRS; import edu.wpi.first.wpilibj.SPI; import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.Timer; 
+import edu.wpi.first.wpilibj.DriverStation; 
+import com.kauailabs.navx.frc.AHRS; 
+import edu.wpi.first.wpilibj.SPI; 
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
@@ -58,6 +62,7 @@ private AHRS navigator;
 
   private static final double kTrackWidth = 0.381 * 2; // meters
   private static final double kWheelRadius = 0.0508; // meters
+  public static final double kWheelCircumfrence = .319185813604723; // meters
 
     private RelativeEncoder m_leftEncoder;
     private RelativeEncoder m_rightEncoder;
@@ -68,7 +73,9 @@ private AHRS navigator;
     private final DifferentialDriveKinematics m_kinematics =
         new DifferentialDriveKinematics(kTrackWidth);
   
-    private final DifferentialDriveOdometry m_odometry;
+    public final DifferentialDriveOdometry m_odometry;
+    
+    
     
     private final SimpleMotorFeedforward m_feedforward = new SimpleMotorFeedforward(1, 3);
 
@@ -219,8 +226,14 @@ try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStat
 
   /** Updates the field-relative position. */
   public void updateOdometry() {
+    
     // m_odometry.update(
     //     navigator.getRotation2d(), m_leftEncoder.getPosition(), m_rightEncoder.getPosition());
+    
+  }
+  public double checkdistance() {
+    return kWheelCircumfrence*m_leftEncoder.getPosition();
+
   }
 }
 
