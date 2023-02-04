@@ -75,7 +75,7 @@ wristSpark.setIdleMode(IdleMode.kCoast);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-      
+        SmartDashboard.putNumber("Wrist Encoder", m_encoder.getPosition());
     }
 
     @Override
@@ -86,11 +86,11 @@ wristSpark.setIdleMode(IdleMode.kCoast);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public void SetGripper(double Position) {
+    public void SetWrist(double Position) {
         m_pidController.setReference(Position, CANSparkMax.ControlType.kPosition);
 
         SmartDashboard.putNumber("SetPoint", Position);
-        SmartDashboard.putNumber("ProcessVariable", m_encoder.getPosition());
+        
     }
 }
 
