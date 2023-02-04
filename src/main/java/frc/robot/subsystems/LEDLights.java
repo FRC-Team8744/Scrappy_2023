@@ -6,10 +6,13 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LEDLights extends SubsystemBase {
+  private final boolean DEBUG = false;
+
   /** Creates a new LEDLights. */
   private AddressableLED m_led;
   private AddressableLEDBuffer m_ledBuffer;
@@ -37,6 +40,12 @@ public class LEDLights extends SubsystemBase {
     LED_r=0;
     LED_g=255;
     LED_b=0;
+
+    if (DEBUG) {
+      SmartDashboard.putNumber("LED_R", LED_r);
+      SmartDashboard.putNumber("LED_G", LED_g);
+      SmartDashboard.putNumber("LED_B", LED_b);
+      }
   }
 
   @Override
@@ -47,7 +56,19 @@ public class LEDLights extends SubsystemBase {
     solidcolor(LED_r, LED_g, LED_b);
     // Set the LEDs
     m_led.setData(m_ledBuffer);
-  }
+
+    if (DEBUG) {
+      // read colors from SmartDashBoard
+      double r = SmartDashboard.getNumber("LED_R", 0);
+      double g = SmartDashboard.getNumber("LED_G", 0);
+      double b = SmartDashboard.getNumber("LED_B", 0);
+
+      // if colors on SmartDashboard have changed, write new values
+      if(r != LED_r) {LED_r = (int)r;}
+      if(g != LED_g) {LED_g = (int)g;}
+      if(b != LED_b) {LED_b = (int)b;}
+      }
+  }  
 
   private void rainbow() {
     // For every pixel
