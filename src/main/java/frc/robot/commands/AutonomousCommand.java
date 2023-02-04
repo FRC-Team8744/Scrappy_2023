@@ -58,19 +58,22 @@ public class AutonomousCommand extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_drivetrain.Drive(0.0, 0.2);
+        m_drivetrain.Drive(0.2, 0.0);//throttle, steering
+        m_drivetrain.Drive(0.0, 0.2);//throttle, steering
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_drivetrain.Drive(0.0, 0.2);
+        m_drivetrain.Drive(0.2, 0.0);//throttle, steering
+        m_drivetrain.Drive(0.0, 0.2);//throttle, steering
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         m_drivetrain.Drive(0.0, 0.0);
+    
     }
 
     // Returns true when the command should end.
@@ -78,6 +81,8 @@ public class AutonomousCommand extends CommandBase {
     public boolean isFinished() {
         if (m_drivetrain.checkdistance() >= 1.0) return true;
         else return false;
+        // if (m_drivetrain.checkdegrees() >= 90.0) return true;
+        // else return false;
     }
 
     @Override

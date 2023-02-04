@@ -235,5 +235,9 @@ try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStat
     return kWheelCircumfrence*m_leftEncoder.getPosition();
 
   }
+
+  // public double checkdegrees() {
+    // return navigator.getRotation2d();
+  // }
 }
 
