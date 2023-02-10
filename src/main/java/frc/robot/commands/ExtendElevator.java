@@ -57,11 +57,14 @@ public class ExtendElevator extends CommandBase {
     @Override
     public void execute() {
         m_sExtendElevator.SetExtendElevator(m_ElevatorExtention);
+        
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_sExtendElevator.StopExtendElevator();
+        
     }
 
     // Returns true when the command should end.
