@@ -79,6 +79,7 @@ private AHRS navigator;
     private final DifferentialDriveWheelSpeeds DebugSpeeds = new DifferentialDriveWheelSpeeds(0, 0);
 
     private double MeasuredDistance;
+    private double MeasuredDegrees;
 
     /**
     *
@@ -244,6 +245,11 @@ try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStat
     MeasuredDistance = kWheelCircumfrence/GearRatio*m_leftEncoder.getPosition() / .0254;
     SmartDashboard.putNumber("MeasuredDistanceInches", MeasuredDistance);
     return MeasuredDistance;
+  }
+  public double checkdegrees(){
+    MeasuredDegrees = navigator.getAngle();
+    SmartDashboard.putNumber("MeasuredDegrees", MeasuredDegrees);
+    return MeasuredDegrees;
   }
 
   // public double checkdegrees() {
