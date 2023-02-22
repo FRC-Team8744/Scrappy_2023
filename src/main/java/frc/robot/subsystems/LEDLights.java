@@ -25,7 +25,7 @@ public class LEDLights extends SubsystemBase {
   
     // PWM port 9
     // Must be a PWM header, not MXP or DIO
-    m_led = new AddressableLED(9);
+    m_led = new AddressableLED(0);
 
     // Reuse buffer
     // Default to a length of 60, start empty output

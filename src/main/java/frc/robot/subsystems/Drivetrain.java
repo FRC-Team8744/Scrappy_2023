@@ -89,6 +89,7 @@ private AHRS navigator;
 leftFrontSparkMax = new CANSparkMax(9, MotorType.kBrushless);
  
  leftFrontSparkMax.restoreFactoryDefaults();  
+ leftFrontSparkMax.setSmartCurrentLimit(80);
 leftFrontSparkMax.setInverted(false);
 leftFrontSparkMax.setIdleMode(IdleMode.kCoast);
 leftFrontSparkMax.burnFlash();
@@ -97,6 +98,7 @@ leftFrontSparkMax.burnFlash();
 leftRearSparkMax = new CANSparkMax(10, MotorType.kBrushless);
  
  leftRearSparkMax.restoreFactoryDefaults();  
+ leftRearSparkMax.setSmartCurrentLimit(80);
 leftRearSparkMax.setInverted(false);
 leftRearSparkMax.setIdleMode(IdleMode.kCoast);
 leftRearSparkMax.burnFlash();
@@ -109,6 +111,7 @@ leftMotor = new MotorControllerGroup(leftFrontSparkMax, leftRearSparkMax  );
 rightFrontSparkMax = new CANSparkMax(8, MotorType.kBrushless);
  
  rightFrontSparkMax.restoreFactoryDefaults();  
+ rightFrontSparkMax.setSmartCurrentLimit(80);
 rightFrontSparkMax.setInverted(false);
 rightFrontSparkMax.setIdleMode(IdleMode.kCoast);
 rightFrontSparkMax.burnFlash();
@@ -117,6 +120,7 @@ rightFrontSparkMax.burnFlash();
 rightRearSparkMax = new CANSparkMax(7, MotorType.kBrushless);
  
  rightRearSparkMax.restoreFactoryDefaults();  
+ rightRearSparkMax.setSmartCurrentLimit(80);
 rightRearSparkMax.setInverted(false);
 rightRearSparkMax.setIdleMode(IdleMode.kCoast);
 rightRearSparkMax.burnFlash();
@@ -131,6 +135,7 @@ differentialDrive = new DifferentialDrive(leftMotor, rightMotor);
  differentialDrive.setSafetyEnabled(true);
 differentialDrive.setExpiration(0.1);
 differentialDrive.setMaxOutput(1.0);
+differentialDrive.setDeadband(0.1);
 
 
 try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStation.reportError( ex.getMessage(), true);} Timer.delay(1.0);
