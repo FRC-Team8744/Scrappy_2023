@@ -4,16 +4,42 @@
 
 package frc.robot.commands;
 
+import javax.print.DocFlavor.SERVICE_FORMATTED;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.SExtendElevator;
+import frc.robot.subsystems.SGripper;
+import frc.robot.subsystems.SLiftArm;
+import frc.robot.subsystems.SWrist;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoDrive extends SequentialCommandGroup {
+
+  // private final Drivetrain m_drivetrain;
+  // private final SWrist m_sWrist;
+  // private final SGripper m_sGripper;
+  // private final SExtendElevator m_sExtendElevator;
+  // private final SLiftArm m_sLiftArm;
   /** Creates a new AutoDrive. */
-  public AutoDrive() {
+  public AutoDrive(Drivetrain m_drivetrain, SWrist m_sWrist, SExtendElevator m_sExtendElevator, SLiftArm m_sLiftArm, SGripper m_sGripper) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands();
+    addCommands(
+      // new ExtendElevator(m_sExtendElevator, -110),
+      // new LiftArm(m_sLiftArm, 20),
+      // new Wrist(m_sWrist, 30),
+      // new Gripper(m_sGripper, -20),
+      // new ExtendElevator(m_sExtendElevator, -2),
+      // new LiftArm(m_sLiftArm, 0),
+      // new Wrist(m_sWrist, 0),
+      new AutonomousCommand( m_drivetrain, -168.0),
+      new WaitCommand(2),
+      new AutonomousCommand(m_drivetrain, 84.0)
+      );
   }
+
 }

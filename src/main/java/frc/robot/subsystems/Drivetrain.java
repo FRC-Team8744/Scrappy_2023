@@ -189,8 +189,8 @@ try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStat
     public void Drive(double steering, double throttle) {
         
         differentialDrive.arcadeDrive(throttle, steering);
-        SmartDashboard.putNumber("steering", steering);
-        SmartDashboard.putNumber("throttle", throttle);
+        // SmartDashboard.putNumber("steering", steering);
+        // SmartDashboard.putNumber("throttle", throttle);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -241,19 +241,19 @@ try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStat
   public double checkdistanceMeters() {
 
     MeasuredDistance = kWheelCircumfrence/GearRatio*m_leftEncoder.getPosition();
-    SmartDashboard.putNumber("MeasuredDistanceInches", MeasuredDistance / .0254);
+    // SmartDashboard.putNumber("MeasuredDistanceInches", MeasuredDistance / .0254);
     return MeasuredDistance;
   }
 
   public double checkdistanceInches() {
 
     MeasuredDistance = kWheelCircumfrence/GearRatio*m_leftEncoder.getPosition() / .0254;
-    SmartDashboard.putNumber("MeasuredDistanceInches", MeasuredDistance);
+    // SmartDashboard.putNumber("MeasuredDistanceInches", MeasuredDistance);
     return MeasuredDistance;
   }
   public double checkdegrees(){
     MeasuredDegrees = navigator.getAngle();
-    SmartDashboard.putNumber("MeasuredDegrees", MeasuredDegrees);
+    // SmartDashboard.putNumber("MeasuredDegrees", MeasuredDegrees);
     return MeasuredDegrees;
   }
 

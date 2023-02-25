@@ -74,10 +74,10 @@ public class AutonomousCommand extends CommandBase {
     public void execute() {
         // m_drivetrain.Drive(0.2, 0.0);//throttle, steering
         if (m_DistanceInches < 0) {
-            m_drivetrain.Drive(0.0, -0.4);
+            m_drivetrain.Drive(0.0, -.7);
         }
        else {
-             m_drivetrain.Drive(0.0, 0.4);
+             m_drivetrain.Drive(0.0, 0.7);
        }
 
 

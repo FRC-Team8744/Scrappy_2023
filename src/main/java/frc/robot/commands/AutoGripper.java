@@ -5,11 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.SGripper;
 
 public class AutoGripper extends CommandBase {
+  public Double m_grip;
+
+  private final SGripper m_sGripper;
   /** Creates a new AutoGripper. */
-  public AutoGripper(Gripper subsystem, double Grip) {
+  public AutoGripper(SGripper subsystem, double Tightness) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_sGripper = subsystem;
+    addRequirements(m_sGripper);
+
+    m_grip = Tightness;
   }
 
   // Called when the command is initially scheduled.
@@ -22,7 +30,9 @@ public class AutoGripper extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_sGripper.SetGripper( m_grip);
+  }
 
   // Returns true when the command should end.
   @Override
