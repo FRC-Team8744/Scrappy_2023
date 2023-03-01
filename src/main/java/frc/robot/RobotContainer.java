@@ -197,6 +197,12 @@ liftArmHigh.onTrue(new ARMHigh(m_sWrist, m_sExtendElevator, m_sLiftArm, m_sGripp
 
  final JoystickButton TiltWristNudgeLow = new JoystickButton(joystick1, 12);
  TiltWristNudgeLow.onTrue(new Wrist(m_sWrist, Constants.kWrist_Tilt_DOWN));
+
+ final JoystickButton TuneElevatorNudgeUp = new JoystickButton(joystick1, 9);
+ TuneElevatorNudgeUp.onTrue(new ExtendElevator(m_sExtendElevator, Constants.kElevator_Nudge_UP));
+
+ final JoystickButton TuneElevatorNudgeDown = new JoystickButton(joystick1, 11);
+ TuneElevatorNudgeDown.onTrue(new ExtendElevator(m_sExtendElevator, Constants.kElevator_Nudge_Down));
  
  final JoystickButton gripperOpen = new JoystickButton(joystick1, 3); //gamePad, 1);        
 gripperOpen.whileTrue(new Gripper(m_sGripper, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf));

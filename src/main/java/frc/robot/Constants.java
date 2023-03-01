@@ -28,12 +28,17 @@ public class Constants {
     *   public static final int kRightMotor2Port = 3; 
     * }
     */ 
-
+    //ArmConstants
     public static final double kARM_LIFT = 999999.345;  // Very large number that is unlikely to ever be used as a parameter
     public static final double kARM_LOWER = -999999.345;  // Very large number that is unlikely to ever be used as a parameter
     public static final double kARM_MOVE_RATE = 1.0;  // Rate per button press
+    //WristConstants
     public static final double kWrist_Tilt_UP = 999999.345;  // Very large number that is unlikely to ever be used as a parameter
     public static final double kWrist_Tilt_DOWN = -999999.345;  // Very large number that is unlikely to ever be used as a parameter
     public static final double kWRIST_MOVE_RATE = 1.0;  // Rate per button press
+    //ElevatorConstants
+    public static final double kElevator_Nudge_UP = 999999.345;  // Very large number that is unlikely to ever be used as a parameter
+    public static final double kElevator_Nudge_Down = -999999.345;  // Very large number that is unlikely to ever be used as a parameter
+    public static final double kElevator_MOVE_RATE = 1.0;  // Rate per button press
 }
 
