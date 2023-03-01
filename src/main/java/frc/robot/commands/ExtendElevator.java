@@ -59,11 +59,11 @@ public class ExtendElevator extends CommandBase {
     @Override
     public void execute() {
         if (m_ElevatorExtention == Constants.kElevator_Nudge_UP) {
-            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(6) == true) {
+            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(9) == true) {
                 m_sExtendElevator.SetExtendElevator(m_sExtendElevator.LastElevatorSetting + Constants.kElevator_MOVE_RATE);
             }
         } else if (m_ElevatorExtention == Constants.kElevator_Nudge_Down) {
-            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(4) == true) {
+            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(11) == true) {
                 m_sExtendElevator.SetExtendElevator(m_sExtendElevator.LastElevatorSetting - Constants.kElevator_MOVE_RATE);
             }
         } else {

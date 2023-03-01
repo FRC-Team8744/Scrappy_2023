@@ -59,11 +59,11 @@ public class Wrist extends CommandBase {
     @Override
     public void execute() {
         if (m_WristAngle == Constants.kWrist_Tilt_UP) {
-            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(6) == true) {
+            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(10) == true) {
                 m_sWrist.SetWrist(m_sWrist.LastWristSetting + Constants.kWRIST_MOVE_RATE);
             }
         } else if (m_WristAngle == Constants.kWrist_Tilt_DOWN) {
-            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(4) == true) {
+            if (RobotContainer.getInstance().joystick1.getRawButtonPressed(12) == true) {
                 m_sWrist.SetWrist(m_sWrist.LastWristSetting - Constants.kWRIST_MOVE_RATE);
             }
         } else {
