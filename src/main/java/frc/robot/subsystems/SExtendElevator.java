@@ -54,7 +54,7 @@ extendElevatorSpark = new CANSparkMax(12, MotorType.kBrushless);
  
  extendElevatorSpark.restoreFactoryDefaults();  
 extendElevatorSpark.setInverted(false);
-extendElevatorSpark.setIdleMode(IdleMode.kCoast);
+extendElevatorSpark.setIdleMode(IdleMode.kBrake);
 // extendElevatorSpark.burnFlash();
   
 
