@@ -89,6 +89,7 @@ public class AutonomousCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         m_drivetrain.Drive(0.0, 0.0);
+        m_drivetrain.BrakeNow();
     
     }
 

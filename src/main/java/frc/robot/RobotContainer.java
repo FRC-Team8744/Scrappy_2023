@@ -167,7 +167,7 @@ wristUp.onTrue(new Wrist(m_sWrist , -10 ).withInterruptBehavior(InterruptionBeha
                         // SmartDashboard.putData("WristOpen",new Wrist(10, m_sWrist));
                         
 final POVButton extendElevatorHigh = new POVButton(gamePad, 0);        
-extendElevatorHigh.onTrue(new ExtendElevator( m_sExtendElevator, -110).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+extendElevatorHigh.onTrue(new ExtendElevator( m_sExtendElevator, -86.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 // SmartDashboard.putData("ExtendElevatorHigh",new ExtendElevator(10, m_sExtendElevator));
 
 final POVButton elevatorExtentionMid = new POVButton(gamePad, 90);        
@@ -184,9 +184,9 @@ final JoystickButton TuneElevatorNudgeDown = new JoystickButton(joystick1, 11);
 TuneElevatorNudgeDown.onTrue(new ExtendElevator(m_sExtendElevator, Constants.kElevator_Nudge_Down).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
 final JoystickButton liftArmHigh = new JoystickButton(gamePad, 4);        
-// liftArmHigh.onTrue(new ARMHigh(m_sWrist, m_sExtendElevator, m_sLiftArm, m_sGripper).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+liftArmHigh.onTrue(new ARMHigh(m_sWrist, m_sExtendElevator, m_sLiftArm, m_sGripper).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 //                         // SmartDashboard.putData("LiftArmHigh",new LiftArm(10, m_sLiftArm));
-liftArmHigh.onTrue(new LiftArm(m_sLiftArm, 40).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+// liftArmHigh.onTrue(new LiftArm(m_sLiftArm, 40).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
  final JoystickButton liftArmMid = new JoystickButton(gamePad, 2);        
 //  liftArmMid.onTrue(new ARMMid(m_sWrist, m_sExtendElevator, m_sLiftArm, m_sGripper).withInterruptBehavior(InterruptionBehavior.kCancelSelf));

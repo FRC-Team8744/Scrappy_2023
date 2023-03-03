@@ -22,9 +22,9 @@ public class ARMMid extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new LiftArm(m_sLiftArm, 0),
-      new ExtendElevator(m_sExtendElevator, 0),
-      new Wrist(m_sWrist, 0)
+      new LiftArm(m_sLiftArm, 64),
+      new ExtendElevator(m_sExtendElevator, -28),
+      new Wrist(m_sWrist, -31)
     );
   }
 }

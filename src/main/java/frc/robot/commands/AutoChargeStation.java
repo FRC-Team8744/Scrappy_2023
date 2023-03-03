@@ -29,16 +29,17 @@ public class AutoChargeStation extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      // new ExtendElevator(m_sExtendElevator, -110),
-      // new LiftArm(m_sLiftArm, 20),
-      // new Wrist(m_sWrist, 30),
-      // new Gripper(m_sGripper, -20),
+      // new LiftArm(m_sLiftArm, 62),
+      // new ExtendElevator(m_sExtendElevator, -86),
+      // new Wrist(m_sWrist, -26),
+      // new Gripper(m_sGripper, -20), 
+      // new Wrist(m_sWrist, 0),
       // new ExtendElevator(m_sExtendElevator, -2),
       // new LiftArm(m_sLiftArm, 0),
-      // new Wrist(m_sWrist, 0),
-      new AutonomousCommand( m_drivetrain, -168.0),
+      
+      new AutonomousCommand( m_drivetrain, -160.0),
       new WaitCommand(2),
-      new AutonomousCommand(m_drivetrain, 84.0)
+      new AutonomousCommand(m_drivetrain, 102.0)
       );
   }
 

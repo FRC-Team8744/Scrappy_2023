@@ -92,7 +92,7 @@ leftFrontSparkMax = new CANSparkMax(9, MotorType.kBrushless);
  leftFrontSparkMax.restoreFactoryDefaults();  
  leftFrontSparkMax.setSmartCurrentLimit(80);
 leftFrontSparkMax.setInverted(false);
-leftFrontSparkMax.setIdleMode(IdleMode.kCoast);
+leftFrontSparkMax.setIdleMode(IdleMode.kBrake);
 leftFrontSparkMax.burnFlash();
   
 
@@ -101,7 +101,7 @@ leftRearSparkMax = new CANSparkMax(10, MotorType.kBrushless);
  leftRearSparkMax.restoreFactoryDefaults();  
  leftRearSparkMax.setSmartCurrentLimit(80);
 leftRearSparkMax.setInverted(false);
-leftRearSparkMax.setIdleMode(IdleMode.kCoast);
+leftRearSparkMax.setIdleMode(IdleMode.kBrake);
 leftRearSparkMax.burnFlash();
   
 
@@ -114,7 +114,7 @@ rightFrontSparkMax = new CANSparkMax(8, MotorType.kBrushless);
  rightFrontSparkMax.restoreFactoryDefaults();  
  rightFrontSparkMax.setSmartCurrentLimit(80);
 rightFrontSparkMax.setInverted(false);
-rightFrontSparkMax.setIdleMode(IdleMode.kCoast);
+rightFrontSparkMax.setIdleMode(IdleMode.kBrake);
 rightFrontSparkMax.burnFlash();
   
 
@@ -123,7 +123,7 @@ rightRearSparkMax = new CANSparkMax(7, MotorType.kBrushless);
  rightRearSparkMax.restoreFactoryDefaults();  
  rightRearSparkMax.setSmartCurrentLimit(80);
 rightRearSparkMax.setInverted(false);
-rightRearSparkMax.setIdleMode(IdleMode.kCoast);
+rightRearSparkMax.setIdleMode(IdleMode.kBrake);
 rightRearSparkMax.burnFlash();
   
 
@@ -197,7 +197,17 @@ try { navigator = new AHRS(Port.kUSB);} catch (RuntimeException ex ) {DriverStat
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public void BrakeNow() {
+      // leftFrontSparkMax.disable();
+      // rightFrontSparkMax.disable();
+      // leftRearSparkMax.disable();
+      // rightRearSparkMax.disable();
+      // leftFrontSparkMax.set(0);
+      // rightFrontSparkMax.set(0);
+      // leftRearSparkMax.set(0);
+      // rightRearSparkMax.set(0);
+      differentialDrive.stopMotor();
+    }
  /**
    * Sets the desired wheel speeds.
    *

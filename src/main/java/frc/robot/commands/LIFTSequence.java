@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import javax.swing.border.LineBorder;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -19,16 +19,17 @@ import frc.robot.subsystems.SWrist;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ARMHigh extends ParallelCommandGroup {
-  /** Creates a new ARMHigh. */
-  public ARMHigh(SWrist m_sWrist, SExtendElevator m_sExtendElevator, SLiftArm m_sLiftArm, SGripper m_sGripper) {
+public class LIFTSequence extends SequentialCommandGroup {
+  /** Creates a new LIFTSequence. */
+  public LIFTSequence( SLiftArm m_sLiftArm) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(
-      // new Wrist(m_sWrist, -30).withTimeout(0.5),
-      new LIFTSequence( m_sLiftArm),
-      new ExtendElevator(m_sExtendElevator, -86),
-      new Wrist(m_sWrist, -26)
+    addCommands(  new LiftArm(m_sLiftArm, 10).withTimeout(0.25),
+    new LiftArm(m_sLiftArm, 20).withTimeout(0.35),
+    new LiftArm(m_sLiftArm, 30).withTimeout(.25),
+    new LiftArm(m_sLiftArm, 40).withTimeout(.35),
+    new LiftArm(m_sLiftArm, 50).withTimeout(.35),
+    new LiftArm(m_sLiftArm, 62)
     );
   }
 }
