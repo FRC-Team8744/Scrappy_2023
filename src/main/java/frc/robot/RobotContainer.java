@@ -152,7 +152,7 @@ public final Joystick joystick1 = new Joystick(0);
 // Create some buttons
 // final JoystickButton wristClose = new JoystickButton(gamePad, 8);  
 final POVButton wristClose = new POVButton(joystick1, 180); 
-wristClose.onTrue(new Wrist(m_sWrist, -20).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+wristClose.onTrue(new Wrist(m_sWrist, -11).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                     
 final JoystickButton gripperClose = new JoystickButton(joystick1, 5); //gamePad, 5);        
 gripperClose.whileTrue(new Gripper(m_sGripper , 0 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));

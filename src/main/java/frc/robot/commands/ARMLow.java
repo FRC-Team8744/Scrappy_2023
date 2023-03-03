@@ -22,9 +22,9 @@ public class ARMLow extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new LiftArm(m_sLiftArm, 23),
+      new LiftArm(m_sLiftArm, 14),
       new ExtendElevator(m_sExtendElevator, 0),
-      new Wrist(m_sWrist, -22)
+      new Wrist(m_sWrist, -11)
     );
   }
 }
