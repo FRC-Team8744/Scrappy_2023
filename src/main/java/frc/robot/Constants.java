@@ -40,5 +40,7 @@ public class Constants {
     public static final double kElevator_Nudge_UP = 999999.345;  // Very large number that is unlikely to ever be used as a parameter
     public static final double kElevator_Nudge_Down = -999999.345;  // Very large number that is unlikely to ever be used as a parameter
     public static final double kElevator_MOVE_RATE = 1.0;  // Rate per button press
+    // All arm servos
+    public static final double kHOLD_SERVO_STATE = 987654.59687;  // Very large number that is unlikely to ever be used as a parameter
 }
 

@@ -29,8 +29,9 @@ public class AutoShort extends SequentialCommandGroup {
       // new Wrist(m_sWrist, 0),
       // new ExtendElevator(m_sExtendElevator, -2),
       // new LiftArm(m_sLiftArm, 0),
-      
-      new AutonomousCommand( m_drivetrain, -124.0),
+      new Gripper(m_sGripper, 20).withTimeout(1.0), 
+
+      new AutonomousCommand( m_drivetrain, -168.0),
       new WaitCommand(2)
       // new AutonomousCommand(m_drivetrain, 84.0)
     );

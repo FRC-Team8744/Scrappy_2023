@@ -26,9 +26,9 @@ public class ARMHigh extends ParallelCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       // new Wrist(m_sWrist, -30).withTimeout(0.5),
-      new LIFTSequence( m_sLiftArm),
-      new ExtendElevator(m_sExtendElevator, -86),
-      new Wrist(m_sWrist, -26)
+      new LIFTSequence( m_sLiftArm).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
+      new ExtendElevator(m_sExtendElevator, -86).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
+      new Wrist(m_sWrist, -26).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
     );
   }
 }

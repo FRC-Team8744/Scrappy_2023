@@ -32,14 +32,14 @@ public class AutoChargeStation extends SequentialCommandGroup {
       // new LiftArm(m_sLiftArm, 62),
       // new ExtendElevator(m_sExtendElevator, -86),
       // new Wrist(m_sWrist, -26),
-      // new Gripper(m_sGripper, -20), 
+      new Gripper(m_sGripper, 20).withTimeout(1.0), 
       // new Wrist(m_sWrist, 0),
       // new ExtendElevator(m_sExtendElevator, -2),
       // new LiftArm(m_sLiftArm, 0),
       
-      new AutonomousCommand( m_drivetrain, -160.0),
+      new AutonomousCommand( m_drivetrain, -168.0),
       new WaitCommand(2),
-      new AutonomousCommand(m_drivetrain, 102.0)
+      new AutonomousCommand(m_drivetrain, 90.0)
       );
   }
 
