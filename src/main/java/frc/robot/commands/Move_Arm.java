@@ -54,11 +54,11 @@ public class Move_Arm extends CommandBase {
     // Only adjust the elevator position
     } else if (m_WristPosition == Constants.kWrist_Tilt_UP) {
       if (RobotContainer.getInstance().joystick1.getRawButtonPressed(10) == true) {
-        m_Arm.SetArm(Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, m_Arm.LastWristSetting + Constants.kWRIST_MOVE_RATE);
+        m_Arm.SetArm(Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, m_Arm.LastWristSetting - Constants.kWRIST_MOVE_RATE);
       }
     } else if (m_WristPosition == Constants.kWrist_Tilt_DOWN) {
       if (RobotContainer.getInstance().joystick1.getRawButtonPressed(12) == true) {
-        m_Arm.SetArm(Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, m_Arm.LastWristSetting - Constants.kWRIST_MOVE_RATE);
+        m_Arm.SetArm(Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, m_Arm.LastWristSetting + Constants.kWRIST_MOVE_RATE);
       }
     } else {
       // Set all arm joints normally
