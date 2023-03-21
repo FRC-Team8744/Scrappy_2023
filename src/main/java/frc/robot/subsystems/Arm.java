@@ -18,8 +18,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Arm extends SubsystemBase {
   /** Creates a new Arm. */
   // private final boolean DEBUG_PID = false;
-  private final boolean DEBUG = false;
-  private final boolean DEBUG_ENCODER = false;
+  private final boolean DEBUG = true;
+  private final boolean DEBUG_ENCODER = true;
 
   public double LastArmSetting = 0;
   public double LastElevatorSetting = 0;
@@ -70,7 +70,7 @@ public class Arm extends SubsystemBase {
     m_WpidController = wristSpark.getPIDController();
     m_Wencoder = wristSpark.getEncoder();
 
-    kEP = 0.0001;
+    kEP = 0.00005;
     kEI = 0;
     kED = 0;
     kEIz = 0;
@@ -86,10 +86,10 @@ public class Arm extends SubsystemBase {
     m_EpidController.setOutputRange(kEMinOutput, kEMaxOutput);
 
     // Smart Motion Coefficients
-    EmaxVel = 4000; // rpm
+    EmaxVel = 6000; // rpm
     EmaxAcc = 10000;
     EminVel = 0;
-    EallowedErr = 0;
+    EallowedErr = 1.0;
   
     // // Set SmartMotion parameters
     m_EpidController.setSmartMotionMaxVelocity(EmaxVel, 0);
@@ -97,7 +97,7 @@ public class Arm extends SubsystemBase {
     m_EpidController.setSmartMotionMaxAccel(EmaxAcc, 0);
     m_EpidController.setSmartMotionAllowedClosedLoopError(EallowedErr, 0);
 
-    kAP = 0.0001;
+    kAP = 0.00007;
     kAI = 0;
     kAD = 0;
     kAIz = 0;
@@ -113,10 +113,10 @@ public class Arm extends SubsystemBase {
     m_ApidController.setOutputRange(kAMinOutput, kAMaxOutput);
 
     // Smart Motion Coefficients
-    AmaxVel = 4000; // rpm
-    AmaxAcc = 10000;
+    AmaxVel = 5000; // rpm
+    AmaxAcc = 100000;
     AminVel = 0;
-    AallowedErr = 0;
+    AallowedErr = 1.0;
   
     // Set SmartMotion parameters
     m_ApidController.setSmartMotionMaxVelocity(AmaxVel, 0);
@@ -124,7 +124,7 @@ public class Arm extends SubsystemBase {
     m_ApidController.setSmartMotionMaxAccel(AmaxAcc, 0);
     m_ApidController.setSmartMotionAllowedClosedLoopError(AallowedErr, 0);
     
-    kWP = 0.0001;
+    kWP = 0.00005;
     kWI = 0;
     kWD = 0;
     kWIz = 0;
@@ -140,10 +140,10 @@ public class Arm extends SubsystemBase {
     m_WpidController.setOutputRange(kWMinOutput, kWMaxOutput);
 
     // Smart Motion Coefficients
-    WmaxVel = 4000; // rpm
-    WmaxAcc = 10000;
+    WmaxVel = 7000; // rpm
+    WmaxAcc = 100000;
     WminVel = 0;
-    WallowedErr = 0;
+    WallowedErr = 1.0;
   
     // Set SmartMotion parameters
     m_WpidController.setSmartMotionMaxVelocity(WmaxVel, 0);
@@ -171,7 +171,7 @@ public class Arm extends SubsystemBase {
     // AminVel = SmartDashboard.getNumber("MinVel", 0);
     // AallowedErr = SmartDashboard.getNumber("AllowedErr", 0);
 
-    // // Set SmartMotion parameters
+    // Set SmartMotion parameters
     // m_ApidController.setSmartMotionMaxVelocity(AmaxVel, 0);
     // m_ApidController.setSmartMotionMinOutputVelocity(AminVel, 0);
     // m_ApidController.setSmartMotionMaxAccel(AmaxAcc, 0);
@@ -182,7 +182,7 @@ public class Arm extends SubsystemBase {
     // EminVel = SmartDashboard.getNumber("EMinVel", 0);
     // EallowedErr = SmartDashboard.getNumber("EAllowedErr", 0);
 
-    // // Set SmartMotion parameters
+    // Set SmartMotion parameters
     // m_ApidController.setSmartMotionMaxVelocity(EmaxVel, 0);
     // m_ApidController.setSmartMotionMinOutputVelocity(EminVel, 0);
     // m_ApidController.setSmartMotionMaxAccel(EmaxAcc, 0);
@@ -193,7 +193,7 @@ public class Arm extends SubsystemBase {
     // WminVel = SmartDashboard.getNumber("WMinVel", 0);
     // WallowedErr = SmartDashboard.getNumber("WAllowedErr", 0);
 
-    // // Set SmartMotion parameters
+    // Set SmartMotion parameters
     // m_ApidController.setSmartMotionMaxVelocity(WmaxVel, 0);
     // m_ApidController.setSmartMotionMinOutputVelocity(WminVel, 0);
     // m_ApidController.setSmartMotionMaxAccel(WmaxAcc, 0);
@@ -235,6 +235,12 @@ public class Arm extends SubsystemBase {
       SmartDashboard.putNumber("LastArmSetting", LastArmSetting);
       SmartDashboard.putNumber("LastElevatorSetting", LastElevatorSetting);
       SmartDashboard.putNumber("LastWristSetting", LastWristSetting);
+      SmartDashboard.putNumber("Temp Arm", liftArmSpark.getMotorTemperature());
+      SmartDashboard.putNumber("Temp Elevator",  extendElevatorSpark.getMotorTemperature());
+      SmartDashboard.putNumber("Temp Wrist",  wristSpark.getMotorTemperature());
+      SmartDashboard.putNumber("Current Arm", liftArmSpark.getOutputCurrent());
+      SmartDashboard.putNumber("Current WRist", wristSpark.getOutputCurrent());
+      SmartDashboard.putNumber("Current Elevator", extendElevatorSpark.getOutputCurrent());
     }
   }
 
@@ -244,4 +250,9 @@ public class Arm extends SubsystemBase {
     wristSpark.stopMotor();
   }
 
+  public void ZeroEncoders() {
+    extendElevatorSpark.set(-0.1);
+    m_Eencoder.setPosition(0.0);
+    StopArm();
+  }
 }

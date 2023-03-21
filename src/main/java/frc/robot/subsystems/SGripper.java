@@ -142,9 +142,9 @@ gripperSpark.setIdleMode(IdleMode.kCoast);
         // SmartDashboard.putNumber("SetPoint", Position);
         // }
         if (Position > 0) {
-            gripperSpark.set(-1.0);
+            gripperSpark.set(-0.5);
         } else {
-            gripperSpark.set(1.0);
+            gripperSpark.set(0.5);
         }
     }
     public void StopGripper() {

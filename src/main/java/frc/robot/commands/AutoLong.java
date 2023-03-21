@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.SExtendElevator;
 import frc.robot.subsystems.SGripper;
@@ -18,7 +19,7 @@ import frc.robot.subsystems.SWrist;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoLong extends SequentialCommandGroup {
   /** Creates a new AutoLong. */
-  public AutoLong(Drivetrain m_drivetrain, SWrist m_sWrist, SExtendElevator m_sExtendElevator, SLiftArm m_sLiftArm, SGripper m_sGripper) {
+  public AutoLong(Drivetrain m_drivetrain, Arm m_Arm, SGripper m_sGripper) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

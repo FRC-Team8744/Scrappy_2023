@@ -70,7 +70,8 @@ private Double throttlevalue;
     @Override
     public void execute() {
         m_drivetrain.updateOdometry();
-        limitvalue=(-m_Limiter.getAsDouble()/2)+0.5;
+        // limitvalue=(-m_Limiter.getAsDouble()/2)+0.5;
+        limitvalue=(m_Limiter.getAsDouble())-1.0;
         steeringvalue = (.75*limitvalue*m_steering.getAsDouble());
         throttlevalue = (limitvalue*m_throttle.getAsDouble());
         if ((Math.abs(steeringvalue) < 0.1) && (Math.abs(throttlevalue) < 0.1)) {
