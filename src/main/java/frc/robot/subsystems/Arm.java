@@ -70,8 +70,8 @@ public class Arm extends SubsystemBase {
     m_WpidController = wristSpark.getPIDController();
     m_Wencoder = wristSpark.getEncoder();
 
-    // kEP = 0.00007;
-    kEP = 0.7;
+    kEP = 0.00007;
+    // kEP = 0.7;
     kEI = 0;
     kED = 0;
     kEIz = 0;
@@ -79,16 +79,16 @@ public class Arm extends SubsystemBase {
     kEMaxOutput = 1;
     kEMinOutput = -1;
 
-    m_EpidController.setP(kEP);
-    m_EpidController.setI(kEI);
-    m_EpidController.setD(kED);
-    m_EpidController.setIZone(kEIz);
-    m_EpidController.setFF(kEFF);
-    m_EpidController.setOutputRange(kEMinOutput, kEMaxOutput);
+    m_EpidController.setP(kEP, 0);
+    m_EpidController.setI(kEI, 0);
+    m_EpidController.setD(kED, 0);
+    m_EpidController.setIZone(kEIz, 0);
+    m_EpidController.setFF(kEFF, 0);
+    m_EpidController.setOutputRange(kEMinOutput, kEMaxOutput, 0);
 
     // Smart Motion Coefficients
-    EmaxVel = 6000; // rpm
-    EmaxAcc = 10000;
+    EmaxVel = 10000; // rpm
+    EmaxAcc = 200000;
     EminVel = 0;
     EallowedErr = 1.0;
   
@@ -98,8 +98,25 @@ public class Arm extends SubsystemBase {
     m_EpidController.setSmartMotionMaxAccel(EmaxAcc, 0);
     m_EpidController.setSmartMotionAllowedClosedLoopError(EallowedErr, 0);
 
-    // kAP = 0.00007;
-    kAP = 0.7;
+    // !!!!! START: Control coefficients for Slot 1 ONLY!!!
+    kEP = 0.7;
+    kEI = 0;
+    kED = 0;
+    kEIz = 0;
+    kEFF = 0;
+    kEMaxOutput = 1;
+    kEMinOutput = -1;
+
+    m_EpidController.setP(kEP, 1);
+    m_EpidController.setI(kEI, 1);
+    m_EpidController.setD(kED, 1);
+    m_EpidController.setIZone(kEIz, 1);
+    m_EpidController.setFF(kEFF, 1);
+    m_EpidController.setOutputRange(kEMinOutput, kEMaxOutput, 1);
+    // !!!!! END: Control coefficients for Slot 1 ONLY!!!
+
+    kAP = 0.00007;
+    // kAP = 0.7;
     kAI = 0;
     kAD = 0;
     kAIz = 0;
@@ -116,7 +133,7 @@ public class Arm extends SubsystemBase {
 
     // Smart Motion Coefficients
     AmaxVel = 5000; // rpm
-    AmaxAcc = 100000;
+    AmaxAcc = 60000;
     AminVel = 0;
     AallowedErr = 1.0;
   
@@ -126,7 +143,25 @@ public class Arm extends SubsystemBase {
     m_ApidController.setSmartMotionMaxAccel(AmaxAcc, 0);
     m_ApidController.setSmartMotionAllowedClosedLoopError(AallowedErr, 0);
     
-    kWP = 0.7;
+    // !!!!! START: Control coefficients for Slot 1 ONLY!!!
+    kAP = 0.7;
+    kAI = 0;
+    kAD = 0;
+    kAIz = 0;
+    kAFF = 0;
+    kAMaxOutput = 1;
+    kAMinOutput = -1;
+
+    m_ApidController.setP(kAP, 1);
+    m_ApidController.setI(kAI, 1);
+    m_ApidController.setD(kAD, 1);
+    m_ApidController.setIZone(kAIz, 1);
+    m_ApidController.setFF(kAFF, 1);
+    m_ApidController.setOutputRange(kAMinOutput, kAMaxOutput, 1);
+    // !!!!! END: Control coefficients for Slot 1 ONLY!!!
+
+    kWP = 0.00007;
+    // kWP = 0.7;
     kWI = 0;
     kWD = 0;
     kWIz = 0;
@@ -153,6 +188,23 @@ public class Arm extends SubsystemBase {
     m_WpidController.setSmartMotionMaxAccel(WmaxAcc, 0);
     m_WpidController.setSmartMotionAllowedClosedLoopError(WallowedErr, 0);
     
+    // !!!!! START: Control coefficients for Slot 1 ONLY!!!
+    kWP = 0.7;
+    kWI = 0;
+    kWD = 0;
+    kWIz = 0;
+    kWFF = 0;
+    kWMaxOutput = 1;
+    kWMinOutput = -1;
+
+    m_WpidController.setP(kWP, 1);
+    m_WpidController.setI(kWI, 1);
+    m_WpidController.setD(kWD, 1);
+    m_WpidController.setIZone(kWIz, 1);
+    m_WpidController.setFF(kWFF, 1);
+    m_WpidController.setOutputRange(kWMinOutput, kWMaxOutput, 1);
+    // !!!!! END: Control coefficients for Slot 1 ONLY!!!
+
     // Enable motor and set position to zero
     // m_pidController.setReference(0, CANSparkMax.ControlType.kPosition);
   }
@@ -204,30 +256,30 @@ public class Arm extends SubsystemBase {
     
     // Skip servo position update if user passes in the hold state flag
     if (Arm_Position != Constants.kHOLD_SERVO_STATE) {
-      m_ApidController.setReference(Arm_Position, CANSparkMax.ControlType.kPosition);
-      // m_ApidController.setReference(Arm_Position, CANSparkMax.ControlType.kSmartMotion);
+      // m_ApidController.setReference(Arm_Position, CANSparkMax.ControlType.kPosition, 0);
+      m_ApidController.setReference(Arm_Position, CANSparkMax.ControlType.kSmartMotion, 0);
       LastArmSetting = Arm_Position;
     } else {
-      m_ApidController.setReference(LastArmSetting, CANSparkMax.ControlType.kPosition);
-      // m_ApidController.setReference(LastArmSetting, CANSparkMax.ControlType.kSmartMotion);
+      // m_ApidController.setReference(LastArmSetting, CANSparkMax.ControlType.kPosition, 0);
+      m_ApidController.setReference(LastArmSetting, CANSparkMax.ControlType.kSmartMotion, 0);
     }
 
     if (Elevator_Position != Constants.kHOLD_SERVO_STATE) {
-      m_EpidController.setReference(Elevator_Position, CANSparkMax.ControlType.kPosition);
-      // m_EpidController.setReference(Elevator_Position, CANSparkMax.ControlType.kSmartMotion);
+      // m_EpidController.setReference(Elevator_Position, CANSparkMax.ControlType.kPosition, 0);
+      m_EpidController.setReference(Elevator_Position, CANSparkMax.ControlType.kSmartMotion, 0);
       LastElevatorSetting = Elevator_Position;
     } else {
-      m_EpidController.setReference(LastElevatorSetting, CANSparkMax.ControlType.kPosition);
-      // m_EpidController.setReference(LastElevatorSetting, CANSparkMax.ControlType.kSmartMotion);
+      // m_EpidController.setReference(LastElevatorSetting, CANSparkMax.ControlType.kPosition, 0);
+      m_EpidController.setReference(LastElevatorSetting, CANSparkMax.ControlType.kSmartMotion, 0);
     }
 
     if (Wrist_Position != Constants.kHOLD_SERVO_STATE) {
-      m_WpidController.setReference(Wrist_Position, CANSparkMax.ControlType.kPosition);
-      // m_WpidController.setReference(Wrist_Position, CANSparkMax.ControlType.kSmartMotion);
+      // m_WpidController.setReference(Wrist_Position, CANSparkMax.ControlType.kPosition, 0);
+      m_WpidController.setReference(Wrist_Position, CANSparkMax.ControlType.kSmartMotion, 0);
       LastWristSetting = Wrist_Position;
     } else {
-      m_WpidController.setReference(LastWristSetting, CANSparkMax.ControlType.kPosition);
-      // m_WpidController.setReference(LastWristSetting, CANSparkMax.ControlType.kSmartMotion);
+      // m_WpidController.setReference(LastWristSetting, CANSparkMax.ControlType.kPosition, 0);
+      m_WpidController.setReference(LastWristSetting, CANSparkMax.ControlType.kSmartMotion, 0);
     }
 
     if (DEBUG) {
@@ -268,6 +320,27 @@ public class Arm extends SubsystemBase {
 
   public double getWristPosition() {
     return m_Wencoder.getPosition();
+  }
+
+  public void HoldArm() {
+    // Set servo hold position for all axies (Using control settings in SLOT1)
+    m_ApidController.setReference(LastArmSetting, CANSparkMax.ControlType.kPosition, 1);
+
+    m_EpidController.setReference(LastElevatorSetting, CANSparkMax.ControlType.kPosition, 1);
+
+    m_WpidController.setReference(LastWristSetting, CANSparkMax.ControlType.kPosition, 1);
+
+    if (DEBUG) {
+      SmartDashboard.putNumber("LastArmSetting", LastArmSetting);
+      SmartDashboard.putNumber("LastElevatorSetting", LastElevatorSetting);
+      SmartDashboard.putNumber("LastWristSetting", LastWristSetting);
+      SmartDashboard.putNumber("Temp Arm", liftArmSpark.getMotorTemperature());
+      SmartDashboard.putNumber("Temp Elevator",  extendElevatorSpark.getMotorTemperature());
+      SmartDashboard.putNumber("Temp Wrist",  wristSpark.getMotorTemperature());
+      SmartDashboard.putNumber("Current Arm", liftArmSpark.getOutputCurrent());
+      SmartDashboard.putNumber("Current WRist", wristSpark.getOutputCurrent());
+      SmartDashboard.putNumber("Current Elevator", extendElevatorSpark.getOutputCurrent());
+    }
   }
 
 }

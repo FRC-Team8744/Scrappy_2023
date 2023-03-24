@@ -30,6 +30,7 @@ public class AutoChargeStation extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      // new AutoZeroSequence(m_Arm),
       // new LiftArm(m_sLiftArm, 62),
       // new ExtendElevator(m_sExtendElevator, -86),
       // new Wrist(m_sWrist, -26),

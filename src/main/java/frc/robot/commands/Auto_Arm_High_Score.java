@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
@@ -23,10 +24,15 @@ public class Auto_Arm_High_Score extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new AutoZeroSequence(m_Arm),
       new Move_Arm_HighPreset(m_Arm).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       new Gripper(m_sGripper, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf).withTimeout(.25),
-      new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, 0, -3).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
-      new Move_Arm(m_Arm, 0, 0, -3).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
+      new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, 0, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
+      new Move_Arm(m_Arm, 0, 0, 0).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
+      // new AutonomousCommand( m_drivetrain, -168.0),
+      // new WaitCommand(2),
+      // new AutonomousCommand(m_drivetrain, 90.0)
+
     );
   }
 }

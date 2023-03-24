@@ -17,10 +17,11 @@ public class Move_Arm_HighPreset extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new Move_Arm_Profiled(m_Arm,  40, Constants.kHOLD_SERVO_STATE , Constants.kHOLD_SERVO_STATE).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() > 35.0)),
-      new Move_Arm_Profiled(m_Arm, 49.71, -48, 28).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
-      // new Move_Arm(m_Arm,  25.8, Constants.kHOLD_SERVO_STATE , Constants.kHOLD_SERVO_STATE).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() > 25.8)),
-      // new Move_Arm(m_Arm, 49.71, -23, 28).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
+      // new Move_Arm_Profiled(m_Arm,  30, Constants.kHOLD_SERVO_STATE , Constants.kHOLD_SERVO_STATE).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() > 25.0)),
+      // new Move_Arm_Profiled(m_Arm, 49.71, -48, 28).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
+      new Move_Arm(m_Arm,  30, Constants.kHOLD_SERVO_STATE , 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() > 25.0)),
+      new Move_Arm(m_Arm, 49.71, -48, 27).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
+
 
     );
   }

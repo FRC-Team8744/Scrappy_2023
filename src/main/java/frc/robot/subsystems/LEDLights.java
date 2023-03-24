@@ -15,7 +15,8 @@ public class LEDLights extends SubsystemBase {
 
   /** Creates a new LEDLights. */
   private AddressableLED m_led;
-  private AddressableLEDBuffer m_ledBuffer;
+  // private AddressableLED m_led2;
+  private AddressableLEDBuffer m_ledBuffer; //m_ledBuffer2;
   // Store what the last hue of the first pixel is
   private int m_rainbowFirstPixelHue;
   
@@ -23,19 +24,25 @@ public class LEDLights extends SubsystemBase {
 
   public LEDLights() {
   
-    // PWM port 9
+    // PWM port 0
     // Must be a PWM header, not MXP or DIO
     m_led = new AddressableLED(0);
-
+    // m_led2 = new AddressableLED(1);
     // Reuse buffer
     // Default to a length of 60, start empty output
     // Length is expensive to set, so only set it once, then just update data
     m_ledBuffer = new AddressableLEDBuffer(60);
+    // m_ledBuffer2 = new AddressableLEDBuffer(60);
     m_led.setLength(m_ledBuffer.getLength());
+    // m_led2.setLength(m_ledBuffer2.getLength());
 
     // Set the data
     m_led.setData(m_ledBuffer);
     m_led.start();
+
+    // m_led2.setData(m_ledBuffer2);
+    // m_led2.start();
+
 
     LED_r=0;
     LED_g=255;
@@ -56,6 +63,8 @@ public class LEDLights extends SubsystemBase {
     solidcolor(LED_r, LED_g, LED_b);
     // Set the LEDs
     m_led.setData(m_ledBuffer);
+    // m_led2.setData(m_ledBuffer2);
+
 
     if (DEBUG) {
       // read colors from SmartDashBoard
@@ -78,6 +87,8 @@ public class LEDLights extends SubsystemBase {
       final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
       // Set the value
       m_ledBuffer.setHSV(i, hue, 255, 128);
+      // m_ledBuffer2.setHSV(i, hue, 255, 128);
+
     }
     // Increase by to make the rainbow "move"
     m_rainbowFirstPixelHue += 3;
@@ -95,6 +106,8 @@ public class LEDLights extends SubsystemBase {
       // // Set the value
       // m_ledBuffer.setHSV(i, hue, 255, 128);
       m_ledBuffer.setRGB(i, r, g, b);
+      // m_ledBuffer2.setRGB(i, r, g, b);
+
     }
     // Increase by to make the rainbow "move"
     m_rainbowFirstPixelHue += 3;
