@@ -16,7 +16,7 @@ public class AutoZeroSequence extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new Move_Arm(m_Arm, 0, 3, -5.1).withInterruptBehavior(InterruptionBehavior.kCancelSelf).withTimeout(2),
+      new Move_Arm(m_Arm, 0, 3, -8.1).withInterruptBehavior(InterruptionBehavior.kCancelSelf).withTimeout(2),
       new Zero_Arm_Encoders(m_Arm).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       new Move_Arm(m_Arm, 0, 0, 0).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
 

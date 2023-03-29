@@ -42,5 +42,14 @@ public class Constants {
     public static final double kElevator_MOVE_RATE = 1.0;  // Rate per button press
     // All arm servos
     public static final double kHOLD_SERVO_STATE = 987654.59687;  // Very large number that is unlikely to ever be used as a parameter
+
+    // Gyro
+    public static final double kTURN_TO_SCORING_STATION = 999999.735;  // Very large number that is unlikely to ever be used as a parameter
+
+    //TurnToAnglePID
+    public static final double kTurnP = 0.008;
+    public static final double kTurnI = 0.0; 
+    public static final double kTurnD = 0.0;
+    
 }
 

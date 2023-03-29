@@ -14,6 +14,7 @@ import frc.robot.subsystems.SExtendElevator;
 import frc.robot.subsystems.SGripper;
 import frc.robot.subsystems.SLiftArm;
 import frc.robot.subsystems.SWrist;
+import frc.robot.Constants;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -30,18 +31,26 @@ public class AutoChargeStation extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new Set_Starting_Position(m_drivetrain),
       // new AutoZeroSequence(m_Arm),
       // new LiftArm(m_sLiftArm, 62),
       // new ExtendElevator(m_sExtendElevator, -86),
       // new Wrist(m_sWrist, -26),
-      new Gripper(m_sGripper, 20).withTimeout(1.0), 
+      new Gripper(m_sGripper, -0.5).withTimeout(1.0),
+
       // new Wrist(m_sWrist, 0),
       // new ExtendElevator(m_sExtendElevator, -2),
       // new LiftArm(m_sLiftArm, 0),
       
       new AutonomousCommand( m_drivetrain, -168.0),
       new WaitCommand(2),
-      new AutonomousCommand(m_drivetrain, 90.0)
+      // new AutoTurnToAngle(m_drivetrain, Constants.kTURN_TO_SCORING_STATION),
+      // new TurnToAnglePID(90, m_drivetrain).withTimeout(4.0),
+      // new Gripper(m_sGripper, 0.5).withTimeout(1.0)
+      new AutoTurnToAngle(m_drivetrain, 20).withTimeout(.2),
+      // new AutoTurnToAngle(m_drivetrain, 90),
+      new AutonomousCommand(m_drivetrain, 86.0)
+
       );
   }
 

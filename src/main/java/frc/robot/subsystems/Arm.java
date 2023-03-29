@@ -283,12 +283,12 @@ public class Arm extends SubsystemBase {
     }
 
     if (DEBUG) {
-      SmartDashboard.putNumber("SetPoint Arm", Arm_Position);
-      SmartDashboard.putNumber("SetPoint Elevator", Elevator_Position);
-      SmartDashboard.putNumber("SetPoint Wrist", Wrist_Position);
-      SmartDashboard.putNumber("LastArmSetting", LastArmSetting);
-      SmartDashboard.putNumber("LastElevatorSetting", LastElevatorSetting);
-      SmartDashboard.putNumber("LastWristSetting", LastWristSetting);
+      // SmartDashboard.putNumber("SetPoint Arm", Arm_Position);
+      // SmartDashboard.putNumber("SetPoint Elevator", Elevator_Position);
+      // SmartDashboard.putNumber("SetPoint Wrist", Wrist_Position);
+      // SmartDashboard.putNumber("LastArmSetting", LastArmSetting);
+      // SmartDashboard.putNumber("LastElevatorSetting", LastElevatorSetting);
+      // SmartDashboard.putNumber("LastWristSetting", LastWristSetting);
       SmartDashboard.putNumber("Temp Arm", liftArmSpark.getMotorTemperature());
       SmartDashboard.putNumber("Temp Elevator",  extendElevatorSpark.getMotorTemperature());
       SmartDashboard.putNumber("Temp Wrist",  wristSpark.getMotorTemperature());
@@ -305,8 +305,10 @@ public class Arm extends SubsystemBase {
   }
 
   public void ZeroEncoders() {
-    extendElevatorSpark.set(-0.1);
+    // extendElevatorSpark.set(-0.1);
+    m_Aencoder.setPosition(0.0);
     m_Eencoder.setPosition(0.0);
+    m_Wencoder.setPosition(0.0);
     StopArm();
   }
 

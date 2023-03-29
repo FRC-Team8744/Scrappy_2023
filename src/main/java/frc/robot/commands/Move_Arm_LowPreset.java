@@ -18,8 +18,8 @@ public class Move_Arm_LowPreset extends SequentialCommandGroup {
     addCommands(
       // new Move_Arm_Profiled(m_Arm, 25.8, 0.0, 14.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() < 25.8)),
       // new Move_Arm_Profiled(m_Arm, 0.0, 0.0, 14.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
-      new Move_Arm(m_Arm, 25.8, 0.0, 14.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() < 25.8)),
-      new Move_Arm(m_Arm, 0.0, 0.0, 14.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
+      new Move_Arm(m_Arm, 25.8, 0.0, 11.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf).unless(() -> (m_Arm.m_Aencoder.getPosition() < 25.8)),
+      new Move_Arm(m_Arm, 0.0, 0.0, 11.0).withInterruptBehavior(InterruptionBehavior.kCancelSelf)
 
     );
   }
