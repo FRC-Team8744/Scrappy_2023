@@ -302,14 +302,30 @@ public class Arm extends SubsystemBase {
     liftArmSpark.stopMotor();
     extendElevatorSpark.stopMotor();
     wristSpark.stopMotor();
+
+  }
+
+  public void PullBackElevator() {
+    m_EpidController.setReference(0.1, CANSparkMax.ControlType.kDutyCycle, 1);
+    m_WpidController.setReference(3.0, CANSparkMax.ControlType.kPosition, 1);
+    // wristSpark.stopMotor();
+    
+  }
+  public void PullBackArm() {
+    m_EpidController.setReference(0.1, CANSparkMax.ControlType.kDutyCycle, 1);
+    m_WpidController.setReference(-0.2, CANSparkMax.ControlType.kDutyCycle, 1);
+    // wristSpark.stopMotor();
+    
   }
 
   public void ZeroEncoders() {
-    // extendElevatorSpark.set(-0.1);
+    
+    StopArm();// YOU NEED TO TURN OF THE MOTORS BEFORE YOU SET THE POSITION!!!
     m_Aencoder.setPosition(0.0);
-    m_Eencoder.setPosition(0.0);
-    m_Wencoder.setPosition(0.0);
+    m_Eencoder.setPosition(1.0);
+    m_Wencoder.setPosition(-3.0);
     StopArm();
+    
   }
 
   public double getArmPosition() {

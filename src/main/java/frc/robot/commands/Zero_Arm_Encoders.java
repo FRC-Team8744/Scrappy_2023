@@ -4,11 +4,14 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 public class Zero_Arm_Encoders extends CommandBase {
       private final Arm m_Arm;
+      private final Timer m_Timer = new Timer();
 /** Creates a new Zero_Arm_Encoders. */
   public Zero_Arm_Encoders(Arm ArmSub) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -18,12 +21,19 @@ public class Zero_Arm_Encoders extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_Timer.restart();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Arm.ZeroEncoders();
+    // SmartDashboard.putNumber("Timer", m_Timer.get());
+  if (m_Timer.get() < 0.5 ){
+    m_Arm.PullBackElevator();
+  } else if (m_Timer.get() < 1.0) {
+    m_Arm.PullBackArm();
+  } else m_Arm.ZeroEncoders();
   }
 
   // Called once the command ends or is interrupted.
@@ -33,6 +43,10 @@ public class Zero_Arm_Encoders extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    if (m_Timer.get() > 1.1) {
+      // SmartDashboard.putString("Zero Debug", "Zero Arm Is Finished");
+      return true;}
+    else return false;
+
   }
 }

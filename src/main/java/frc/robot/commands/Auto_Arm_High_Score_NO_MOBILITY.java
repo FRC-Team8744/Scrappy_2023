@@ -30,7 +30,7 @@ public class Auto_Arm_High_Score_NO_MOBILITY extends SequentialCommandGroup {
       new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, 0, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       new Move_Arm(m_Arm, 0, 0, 0).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
-      new AutonomousCommand( m_drivetrain, -98.0)
+      new AutonomousCommand( m_drivetrain, -88.0)
       // new WaitCommand(2),
       // new AutonomousCommand(m_drivetrain, 86.0)
       

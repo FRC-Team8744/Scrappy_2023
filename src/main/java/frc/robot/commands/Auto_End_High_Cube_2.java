@@ -30,14 +30,15 @@ public class Auto_End_High_Cube_2 extends SequentialCommandGroup {
       new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, 0, 10).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       new Move_Arm(m_Arm, 0, 0, 0).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
-      new AutonomousCommand( m_drivetrain, -164.0),
-      new AutoTurnToAngle(m_drivetrain, 180).withTimeout(2.5),
-      new Move_Arm(m_Arm, Constants.kHOLD_SERVO_STATE, Constants.kHOLD_SERVO_STATE, 14),
-      new Gripper(m_sGripper, 0.5).withInterruptBehavior(InterruptionBehavior.kCancelSelf).withTimeout(1),
-      new AutoTurnToAngle(m_drivetrain, -180).withTimeout(2.3),
+      new AutonomousCommand( m_drivetrain, -155.0),
+      new AutoTurnToAngle(m_drivetrain, 160).withTimeout(2.5),
+      new End_Of_Cube_2_Grabes_Cone(m_drivetrain, m_sGripper, m_Arm).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
+      new Move_Arm(m_Arm, 0, 0, 18),
+      new AutoTurnToAngle(m_drivetrain, -185).withTimeout(2.3),
       new Move_Arm(m_Arm, 0, 0, 0).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
       // new AutonomousCommand(m_drivetrain, 164),
-      new Gripper(m_sGripper, -.5).withTimeout(.25)
+      new Move_Arm_HighPreset(m_Arm).withInterruptBehavior(InterruptionBehavior.kCancelSelf),
+      new Gripper(m_sGripper, -0.5).withTimeout(.25)
 
     );
   }
