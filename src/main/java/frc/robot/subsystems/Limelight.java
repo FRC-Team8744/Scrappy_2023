@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.AutoTurnToAngle;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -25,16 +26,49 @@ NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 NetworkTableEntry tx = table.getEntry("tx");
 NetworkTableEntry ty = table.getEntry("ty");
 NetworkTableEntry ta = table.getEntry("ta");
+NetworkTableEntry tid = table.getEntry("tid");
+NetworkTableEntry tv = table.getEntry("tv");
 
 //read values periodically
 double x = tx.getDouble(0.0);
 double y = ty.getDouble(0.0);
 double area = ta.getDouble(0.0);
+double AprilNumber = tid.getDouble(0.0);
+double CanSeeTag= tv.getDouble(0.0);
+
+SmartDashboard.putNumber("Tid", AprilNumber);
 
 //post to smart dashboard periodically
-SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
-SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
-SmartDashboard.putNumber("LimelightArea", ta.getDouble(0.0));
+if (x > 0) {
+  SmartDashboard.putNumber("limelight x positive", x);
+
+}
+else if (x <= 0) {
+  SmartDashboard.putNumber("limelight x negative", x); 
+}
+else {
+  SmartDashboard.putNumber("limelight x negative", 999);
+  SmartDashboard.putNumber("limelight x positive", 999);
+ }
+
+if (y > 0) {
+  SmartDashboard.putNumber("limelight y positive", y);
+}
+else if (y <= 0) {
+  SmartDashboard.putNumber("limelight y negative", y);
+}
+else {
+  SmartDashboard.putNumber("limelight y negative", 999);
+  SmartDashboard.putNumber("limelight y positive", 999);
+}
+
+if (x > 5) {
+  SmartDashboard.putNumber("limelight x to go", Math.abs(x));
+}
+
+if (x < 5) {
+  SmartDashboard.putNumber("limelight x to go", Math.abs(x));
+}
   }
 
 }
